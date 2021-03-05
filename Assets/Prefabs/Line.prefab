@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5418359736052548631}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ LineRenderer:
   - {x: 2, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.09289549
+    widthMultiplier: 0.028045658
     widthCurve:
       serializedVersion: 2
       m_Curve:

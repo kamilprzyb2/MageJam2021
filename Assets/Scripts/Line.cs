@@ -6,32 +6,31 @@ using System.Linq;
 public class Line : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    public EdgeCollider2D edgeCollider;
+    public EdgeCollider2D edgeCollider;    
 
     private List<Vector2> points;
 
-    public void UpdateLine (Vector2 mousePos)
+    public void UpdateLine (Vector2 mousePos, float zAdjustment, float lineInterval)
     {
         if (points == null)
         {
             points = new List<Vector2>();
-            SetPoint(mousePos);
+            SetPoint(mousePos, zAdjustment);
             return;
         }
 
-        if (Vector2.Distance(points.Last(), mousePos) > .01f)
+        if (Vector2.Distance(points.Last(), mousePos) > lineInterval)
         {
-            SetPoint(mousePos);
+            SetPoint(mousePos, zAdjustment);
         }
     }
 
-    void SetPoint (Vector2 point)
+    void SetPoint (Vector2 point, float zAdjustment)
     {
         points.Add(point);
-        print(points.Count);
 
         lineRenderer.positionCount = points.Count;
-        lineRenderer.SetPosition(points.Count - 1, point);
+        lineRenderer.SetPosition(points.Count - 1, new Vector3(point.x, point.y, zAdjustment));
         
         if (points.Count > 1)
             edgeCollider.points = points.ToArray();
