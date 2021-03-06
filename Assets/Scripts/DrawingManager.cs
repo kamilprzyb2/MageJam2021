@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public enum GameMode {DRAWING, MOVING}
 
@@ -38,6 +39,11 @@ public class DrawingManager : MonoBehaviour
                 Destroy(toRemove.gameObject);
             }
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
 
         // if player holds left mouse button
         if (Input.GetMouseButton(0))
