@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{
-    private Rigidbody2D playerRigidbody;
+{  
+    public DrawingManager drawingManager;
     public float movementForce = 1;
     public float jumpForce = 1;
     public float strafingModifier = 0.6f;
 
+    private Rigidbody2D playerRigidbody;
+
     [SerializeField]
     private Transform groundCheckMiddle = null;
-    [SerializeField]
-    private Transform groundCheckLeft = null;
-    [SerializeField]
-    private Transform groundCheckRight = null;
 
     [NonSerialized]
     public bool isGrounded;
@@ -28,18 +26,15 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        isGrounded = true; //groundCheck();
+        isGrounded = groundCheck();
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        Walk(horizontalInput);
+        if (drawingManager.gameMode == GameMode.MOVING && horizontalInput !=0)
+            Walk(horizontalInput);
 
-        if (isGrounded)
+        if (Input.GetAxis("Jump") > 0 && drawingManager.gameMode == GameMode.MOVING && isGrounded)
         {
-            if (Input.GetAxis("Jump") > 0)
-            {
-                print("JUMP");
-                Jump();
-            }
+            Jump();
         }
 
     }
@@ -69,9 +64,7 @@ public class PlayerMovement : MonoBehaviour
     bool groundCheck()
     {
         return
-            Physics2D.Linecast(transform.position, groundCheckMiddle.position, 1 << LayerMask.NameToLayer("Ground")) ||
-            Physics2D.Linecast(transform.position, groundCheckLeft.position, 1 << LayerMask.NameToLayer("Ground")) ||
-            Physics2D.Linecast(transform.position, groundCheckRight.position, 1 << LayerMask.NameToLayer("Ground"));
+            Physics2D.Linecast(transform.position, groundCheckMiddle.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 
 }
