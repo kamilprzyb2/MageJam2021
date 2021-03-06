@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public DrawingManager drawingManager;
     public float movementForce = 1;
     public float jumpForce = 1;
+    public float climbForce = 1;
     public float strafingModifier = 0.6f;
+    public float ladderHorizontalModifier = 0.2f;
 
     private Rigidbody2D playerRigidbody;
 
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     [NonSerialized]
     public bool isGrounded;
+
+    private bool IsOnLadder = false;
 
     void Start()
     {
@@ -35,6 +39,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Jump") > 0 && drawingManager.gameMode == GameMode.MOVING && isGrounded)
         {
             Jump();
+        }
+
+        if (IsOnLadder)
+        {
+            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x * ladderHorizontalModifier, 0);
+            float verticallInput = Input.GetAxisRaw("Vertical");
+            if (verticallInput != 0)
+            {
+                playerRigidbody.AddForce(new Vector2(0, verticallInput * climbForce));
+            }
         }
 
     }
@@ -65,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
     {
         return
             Physics2D.Linecast(transform.position, groundCheckMiddle.position, 1 << LayerMask.NameToLayer("Ground"));
+    }
+
+    public void SetLadder(bool Ladder)
+    {
+        IsOnLadder = Ladder;
     }
 
 }

@@ -75,9 +75,6 @@ public class DrawingManager : MonoBehaviour
         }
         foreach (Box box in preventFromDrawing)
         {
-            print(box.topRightCorner.position.x);
-            print(box.bottomLeftCorner.position.x);
-
             if (box.IsInBox(mousePos))
             {
                 return false;
