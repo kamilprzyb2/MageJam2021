@@ -44,12 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: 0
-  lineTemplate: {fileID: 4762907144258043178, guid: 7e94fbf31e1336141afe42e3ef81e3c1, type: 3}
+  lineTemplate: {fileID: 4762907144258043178, guid: ba12259e9e5b22543bf5c2b240986c04, type: 3}
   zAdjustment: 6.99
   lineInterval: 0.01
   drawArea: {fileID: 0}
   preventFromDrawing:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   ortoCamera: {fileID: 0}

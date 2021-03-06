@@ -1139,7 +1139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &951942788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +1753,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1464534118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1419270763698407052, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
+  m_PrefabInstance: {fileID: 875005418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa491ba952fa4d247b7e4a31e5cd98c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1478940837
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,13 +2481,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1495142774}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
-      propertyPath: lineTemplate
+      propertyPath: preventFromDrawing.Array.data[0]
       value: 
-      objectReference: {fileID: 4762907144258043178, guid: ba12259e9e5b22543bf5c2b240986c04, type: 3}
-    - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
-      propertyPath: preventFromDrawing.Array.size
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1464534118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
 --- !u!1 &1963860211
