@@ -8,21 +8,15 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;    
 
-    private List<Vector2> points;
+    public List<Vector2> points;
 
-    public void UpdateLine (Vector2 mousePos, float zAdjustment, float lineInterval)
+    public void UpdateLine (Vector2 mousePos, float zAdjustment)
     {
         if (points == null)
         {
             points = new List<Vector2>();
-            SetPoint(mousePos, zAdjustment);
-            return;
         }
-
-        if (Vector2.Distance(points.Last(), mousePos) > lineInterval)
-        {
             SetPoint(mousePos, zAdjustment);
-        }
     }
 
     void SetPoint (Vector2 point, float zAdjustment)
@@ -35,7 +29,4 @@ public class Line : MonoBehaviour
         if (points.Count > 1)
             edgeCollider.points = points.ToArray();
     }
-
-
-
 }

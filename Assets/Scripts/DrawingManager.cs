@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public enum GameMode {DRAWING, MOVING}
 
@@ -10,8 +11,8 @@ public class DrawingManager : MonoBehaviour
     public GameObject lineTemplate;
     public float zAdjustment = 10f;
     public float lineInterval = 0.01f;
-    public Transform topRightCorner;
-    public Transform bottomLeftCorner;
+    public Box drawArea;
+    public List<Box> preventFromDrawing;
     public Camera ortoCamera;
 
 
@@ -38,38 +39,69 @@ public class DrawingManager : MonoBehaviour
             }
         }
 
-
+        // if player holds left mouse button
         if (Input.GetMouseButton(0))
         {
             Vector2 mousePos = ortoCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
 
-            if (gameMode == GameMode.MOVING ||
-                mousePos.x > topRightCorner.position.x || mousePos.x < bottomLeftCorner.position.x ||
-                mousePos.y > topRightCorner.position.y || mousePos.y < bottomLeftCorner.position.y)
+            if (IsAbleToDraw(mousePos))
             {
-                activeLine = null;
+                if (activeLine == null)
+                {
+                    StartNewLine(mousePos);
+                }
+                else if (IsFarAwayFromLastPoint(mousePos))
+                {
+                    activeLine.UpdateLine(mousePos, zAdjustment);
+                }
             }
-            else if (activeLine == null)
+            else if (activeLine != null)
             {
-                GameObject newLine = Instantiate(lineTemplate);
-                activeLine = newLine.GetComponent<Line>();
+                EndLine();
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (activeLine != null)
         {
-            lines.Push(activeLine);
-            activeLine = null;
+            EndLine();
         }
-        
-
-        if (activeLine != null)
-        {
-            Vector2 mousePos = ortoCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-            activeLine.UpdateLine(mousePos, zAdjustment, lineInterval);
-        }
-
-        
 
     }
 
+    private bool IsAbleToDraw(Vector2 mousePos)
+    {
+        if (gameMode != GameMode.DRAWING || !drawArea.IsInBox(mousePos))
+        {
+            return false;
+        }
+        foreach (Box box in preventFromDrawing)
+        {
+            print(box.topRightCorner.position.x);
+            print(box.bottomLeftCorner.position.x);
+
+            if (box.IsInBox(mousePos))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private bool IsFarAwayFromLastPoint(Vector2 mousePos)
+    {
+        if (activeLine == null || activeLine.points.Count == 0)
+        {
+            return true;
+        }
+        return Vector2.Distance(activeLine.points.Last(), mousePos) > lineInterval;
+    }
+    private void StartNewLine(Vector2 mousePos)
+    {
+        GameObject newLine = Instantiate(lineTemplate);
+        activeLine = newLine.GetComponent<Line>();
+        activeLine.UpdateLine(mousePos, zAdjustment);
+    }
+    private void EndLine()
+    {
+        lines.Push(activeLine);
+        activeLine = null;
+    }
 }

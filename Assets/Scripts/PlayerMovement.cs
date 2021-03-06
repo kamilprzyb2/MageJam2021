@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.AddForce(new Vector2(forceX, 0));
 
-        if (horizontalInput > 0)
-            playerRigidbody.transform.localScale = new Vector3(1, transform.localScale.y);
-        else
-            playerRigidbody.transform.localScale = new Vector3(-1, transform.localScale.y);
+        //if (horizontalInput > 0)
+        //    playerRigidbody.transform.localScale = new Vector3(1, transform.localScale.y);
+        //else
+        //    playerRigidbody.transform.localScale = new Vector3(-1, transform.localScale.y);
 
        
     }
