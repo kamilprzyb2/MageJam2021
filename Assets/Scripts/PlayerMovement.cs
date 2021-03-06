@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float climbForce = 1;
     public float strafingModifier = 0.6f;
     public float ladderHorizontalModifier = 0.2f;
+    public float jumpCoolDown = 0.1f;
     public Box box;
 
     private Rigidbody2D playerRigidbody;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsOnLadder = false;
     private float direction = 1;
     private float xScale = 0.8f;
+    private bool lockJump = false;
 
     void Start()
     {
@@ -44,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
         if (drawingManager.gameMode == GameMode.MOVING && horizontalInput != 0)
             Walk(horizontalInput);
 
-        if (Input.GetAxis("Jump") > 0 && drawingManager.gameMode == GameMode.MOVING && isGrounded)
+        if (Input.GetAxis("Jump") > 0 && drawingManager.gameMode == GameMode.MOVING && isGrounded && !lockJump)
         {
-            Jump();
+            Jump();           
         }
 
         if (IsOnLadder)
@@ -85,9 +87,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        lockJump = true;
         float forceY = jumpForce;
         playerRigidbody.AddForce(new Vector2(0, forceY));
         anim.SetTrigger("Jump");
+        StartCoroutine(UnlockJump());
     }
 
     bool groundCheck()
@@ -101,6 +105,12 @@ public class PlayerMovement : MonoBehaviour
     public void SetLadder(bool Ladder)
     {
         IsOnLadder = Ladder;
+    }
+
+    IEnumerator UnlockJump()
+    {
+        yield return new WaitForSeconds(jumpCoolDown);
+        lockJump = false;
     }
 
 }
