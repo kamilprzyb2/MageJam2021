@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetBool("Moving", playerRigidbody.velocity != Vector2.zero);
-
+        anim.SetBool("MoveKeyPressed", horizontalInput != 0);
 
     }
     void Walk(float horizontalInput)

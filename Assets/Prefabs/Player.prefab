@@ -102,7 +102,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.6
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -124,11 +124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawingManager: {fileID: 0}
   anim: {fileID: 2058153388}
-  movementForce: 4.2
+  movementForce: 1
   jumpForce: 130
   climbForce: 20
   strafingModifier: 0.9
   ladderHorizontalModifier: 0.5
+  jumpCoolDown: 0.2
   box: {fileID: 1419270763698407052}
   groundCheckMiddle: {fileID: 440969201196450658}
   groundCheckLeft: {fileID: 3809433738756009304}
@@ -236,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3618341081628537544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.113, y: -0.35600013, z: 0}
+  m_LocalPosition: {x: 0.079, y: -0.35600013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2363070916938013071}
@@ -266,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7567585637366071467}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.098, y: -0.35600013, z: 0}
+  m_LocalPosition: {x: -0.063, y: -0.35600013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2363070916938013071}
