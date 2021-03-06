@@ -25,4 +25,11 @@ public class Box : MonoBehaviour
             Gizmos.DrawLine(bottomLeftCorner.position, topLeftCorner);
         }
     }
+
+    public void FlipX()
+    {
+        float temp = topRightCorner.position.x;
+        topRightCorner.position = new Vector3(bottomLeftCorner.position.x, topRightCorner.position.y, topRightCorner.position.z);
+        bottomLeftCorner.position = new Vector3(temp, bottomLeftCorner.position.y, bottomLeftCorner.position.z);
+    }
 }
