@@ -2132,7 +2132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 46252135722643896, guid: 7b34398ab21f7d4419c155882b5a630d, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 46252135722643896, guid: 7b34398ab21f7d4419c155882b5a630d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4177,7 +4177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a640f0f9ad22b459db0c9a4b09ce9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level: 0
+  Level: 4
   TimeDelay: 1.5
   RequireItems: 3
   Items: 0
@@ -4479,7 +4479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
       propertyPath: maxLength
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
       propertyPath: ortoCamera
@@ -4637,5 +4637,5 @@ Transform:
   - {fileID: 471406374}
   - {fileID: 945376384}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
