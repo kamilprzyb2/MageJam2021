@@ -2801,6 +2801,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 675124268703806179, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
+      propertyPath: m_Pitch
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 675124268703806179, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
+      propertyPath: m_Volume
+      value: 0.359
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151344219108312852, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
+      propertyPath: m_Pitch
+      value: 2.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151344219108312852, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
+      propertyPath: m_Volume
+      value: 0.347
+      objectReference: {fileID: 0}
+    - target: {fileID: 675124268703806179, guid: f8cb828526270f04a8cf358ebb58f1b0, type: 3}
       propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
