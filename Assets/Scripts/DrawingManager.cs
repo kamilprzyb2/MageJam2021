@@ -9,6 +9,7 @@ public enum GameMode {DRAWING, MOVING}
 public class DrawingManager : MonoBehaviour
 {
     public bool disableDrawing = false;
+    public float maxLength = 10f;
     public GameMode gameMode = GameMode.DRAWING;
     public GameObject lineTemplate;
     public float zAdjustment = 10f;
@@ -20,12 +21,15 @@ public class DrawingManager : MonoBehaviour
 
     private Line activeLine;
     private Stack<Line> lines;
+    [SerializeField]
+    private float remainingLength;
 
     private void Start()
     {
         lines = new Stack<Line>();
         if (disableDrawing)
             gameMode = GameMode.MOVING;
+        remainingLength = maxLength;
     }
 
     void Update()
@@ -39,6 +43,8 @@ public class DrawingManager : MonoBehaviour
             if (lines.Count > 0)
             {
                 Line toRemove = lines.Pop();
+                remainingLength += toRemove.length;
+                print(toRemove.length);
                 Destroy(toRemove.gameObject);
             }
         }
@@ -53,7 +59,9 @@ public class DrawingManager : MonoBehaviour
         {
             Vector2 mousePos = ortoCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
 
-            if (IsAbleToDraw(mousePos))
+            float length = LineLength(mousePos);
+
+            if (IsAbleToDraw(mousePos) && length <= remainingLength)
             {
                 if (activeLine == null)
                 {
@@ -63,6 +71,8 @@ public class DrawingManager : MonoBehaviour
                 {
                     activeLine.UpdateLine(mousePos, zAdjustment);
                 }
+                activeLine.length += length;
+                remainingLength -= length;
             }
             else if (activeLine != null)
             {
@@ -99,6 +109,15 @@ public class DrawingManager : MonoBehaviour
         }
         return Vector2.Distance(activeLine.points.Last(), mousePos) > lineInterval;
     }
+
+    private float LineLength(Vector2 mousePos)
+    {
+        if (activeLine == null || activeLine.points.Count == 0)
+            return 0;
+
+        Vector2 lastPoint = activeLine.points[activeLine.points.Count - 1];
+        return (lastPoint - mousePos).sqrMagnitude;
+    }
     private void StartNewLine(Vector2 mousePos)
     {
         GameObject newLine = Instantiate(lineTemplate);
@@ -107,7 +126,14 @@ public class DrawingManager : MonoBehaviour
     }
     private void EndLine()
     {
-        lines.Push(activeLine);
+        if (activeLine.points.Count < 2)
+        {
+            Destroy(activeLine.gameObject);
+        }
+        else
+        {
+            lines.Push(activeLine);
+        }   
         activeLine = null;
     }
 }
