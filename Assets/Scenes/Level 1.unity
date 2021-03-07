@@ -2560,7 +2560,7 @@ GameObject:
   - component: {fileID: 1162508353}
   - component: {fileID: 1162508352}
   - component: {fileID: 1162508354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: woman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2696,8 +2696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a640f0f9ad22b459db0c9a4b09ce9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level: 1
+  Level: 3
   TimeDelay: 1.5
+  RequireItems: 0
+  Items: 0
 --- !u!1 &1236574042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,9 +4225,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 377295198}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
+      propertyPath: gameMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
       propertyPath: ortoCamera
       value: 
       objectReference: {fileID: 1495142774}
+    - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
+      propertyPath: disableDrawing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
       propertyPath: preventFromDrawing.Array.data[0]
       value: 
