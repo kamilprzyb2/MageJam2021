@@ -4199,6 +4199,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 377295198}
     - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
+      propertyPath: gameMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408756685945198571, guid: 728894a7e0c552240bbd336b080f2921, type: 3}
       propertyPath: maxLength
       value: 1
       objectReference: {fileID: 0}
