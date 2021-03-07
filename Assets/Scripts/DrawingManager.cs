@@ -34,7 +34,7 @@ public class DrawingManager : MonoBehaviour
         {
             gameMode = gameMode == GameMode.DRAWING ? GameMode.MOVING : GameMode.DRAWING;
         }
-        if (Input.GetKeyDown(KeyCode.Z) && gameMode == GameMode.DRAWING)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (lines.Count > 0)
             {
