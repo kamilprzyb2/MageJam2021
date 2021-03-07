@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCoolDown = 0.1f;
     public Box box;
 
+    public AudioSource runSound;
+    public AudioSource jumpSound;
+
     private Rigidbody2D playerRigidbody;
 
     [SerializeField]
@@ -65,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("MoveKeyPressed", horizontalInput != 0);
         anim.SetBool("Climbing", IsOnLadder);
 
+        if (horizontalInput != 0 && isGrounded && !runSound.isPlaying)
+        {
+            runSound.Play();
+        }
+        else if ((horizontalInput == 0 || !isGrounded) &&  runSound.isPlaying)
+        {
+            runSound.Stop();
+        }
+
+
     }
     void Walk(float horizontalInput)
     {
@@ -93,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.AddForce(new Vector2(0, forceY));
         anim.SetTrigger("Jump");
         StartCoroutine(UnlockJump());
+
+        jumpSound.Play();
     }
 
     bool groundCheck()

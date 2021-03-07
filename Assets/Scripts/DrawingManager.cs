@@ -33,6 +33,7 @@ public class DrawingManager : MonoBehaviour
             gameMode = GameMode.MOVING;
         remainingLength = maxLength;
 
+        if (chalkbar)
         chalkBarDelta = chalkbar.rectTransform.sizeDelta.x;
     }
 
@@ -48,7 +49,6 @@ public class DrawingManager : MonoBehaviour
             {
                 Line toRemove = lines.Pop();
                 remainingLength += toRemove.length;
-                print(toRemove.length);
                 Destroy(toRemove.gameObject);
 
                 UpdateChalkBar();
