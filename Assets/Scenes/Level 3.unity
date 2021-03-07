@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5651150005686632234, guid: a184cd0cace5a07479b2ba87f8f7194c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6270379257411784308, guid: a184cd0cace5a07479b2ba87f8f7194c, type: 3}
       propertyPath: m_Name
       value: FinishSound
