@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum GameMode {DRAWING, MOVING}
 
@@ -17,8 +18,9 @@ public class DrawingManager : MonoBehaviour
     public Box drawArea;
     public List<Box> preventFromDrawing;
     public Camera ortoCamera;
+    public Image chalkbar;
 
-
+    private float chalkBarDelta;
     private Line activeLine;
     private Stack<Line> lines;
     [SerializeField]
@@ -30,6 +32,8 @@ public class DrawingManager : MonoBehaviour
         if (disableDrawing)
             gameMode = GameMode.MOVING;
         remainingLength = maxLength;
+
+        chalkBarDelta = chalkbar.rectTransform.sizeDelta.x;
     }
 
     void Update()
@@ -46,6 +50,8 @@ public class DrawingManager : MonoBehaviour
                 remainingLength += toRemove.length;
                 print(toRemove.length);
                 Destroy(toRemove.gameObject);
+
+                UpdateChalkBar();
             }
         }
         if (Input.GetKeyDown(KeyCode.R))
@@ -70,6 +76,7 @@ public class DrawingManager : MonoBehaviour
                 else if (IsFarAwayFromLastPoint(mousePos))
                 {
                     activeLine.UpdateLine(mousePos, zAdjustment);
+                    UpdateChalkBar();
                 }
                 activeLine.length += length;
                 remainingLength -= length;
@@ -135,5 +142,11 @@ public class DrawingManager : MonoBehaviour
             lines.Push(activeLine);
         }   
         activeLine = null;
+    }
+
+    private void UpdateChalkBar()
+    {
+        float value = remainingLength / maxLength;
+        chalkbar.rectTransform.sizeDelta = new Vector2(chalkBarDelta * value, chalkbar.rectTransform.sizeDelta.y);
     }
 }

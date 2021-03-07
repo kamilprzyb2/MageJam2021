@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0e372490a8abe4cb684417c4480a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableDrawing: 0
+  maxLength: 1
   gameMode: 0
   lineTemplate: {fileID: 4762907144258043178, guid: ba12259e9e5b22543bf5c2b240986c04, type: 3}
   zAdjustment: 6.99
@@ -51,3 +53,5 @@ MonoBehaviour:
   preventFromDrawing:
   - {fileID: 0}
   ortoCamera: {fileID: 0}
+  chalkbar: {fileID: 0}
+  remainingLength: 0
