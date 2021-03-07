@@ -6,7 +6,8 @@ using System.Linq;
 public class Line : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    public EdgeCollider2D edgeCollider;    
+    public EdgeCollider2D edgeCollider;
+    public float length = 0f;
 
     public List<Vector2> points;
 

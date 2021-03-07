@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{  
+{   
     public DrawingManager drawingManager;
     public Animator anim;
     public float movementForce = 1;
