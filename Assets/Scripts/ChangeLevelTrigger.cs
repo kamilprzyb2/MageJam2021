@@ -9,6 +9,7 @@ public class ChangeLevelTrigger : MonoBehaviour
     public float TimeDelay = 1.5f;
     public int RequireItems = 0;
     public int Items = 0;
+    public AudioSource audios;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerMovement>() == null)
@@ -22,6 +23,8 @@ public class ChangeLevelTrigger : MonoBehaviour
 
     private IEnumerator LoadNextLevel()
     {
+        if (audios != null)
+            audios.Play();
         yield return new WaitForSeconds(TimeDelay);
         SceneManager.LoadScene(Level);
     }
