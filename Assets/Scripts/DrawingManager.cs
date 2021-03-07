@@ -8,6 +8,7 @@ public enum GameMode {DRAWING, MOVING}
 
 public class DrawingManager : MonoBehaviour
 {
+    public bool disableDrawing = false;
     public GameMode gameMode = GameMode.DRAWING;
     public GameObject lineTemplate;
     public float zAdjustment = 10f;
@@ -23,11 +24,13 @@ public class DrawingManager : MonoBehaviour
     private void Start()
     {
         lines = new Stack<Line>();
+        if (disableDrawing)
+            gameMode = GameMode.MOVING;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !disableDrawing)
         {
             gameMode = gameMode == GameMode.DRAWING ? GameMode.MOVING : GameMode.DRAWING;
         }
