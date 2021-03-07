@@ -7,9 +7,14 @@ public class ChangeLevelTrigger : MonoBehaviour
 {
     public int Level = 0;
     public float TimeDelay = 1.5f;
+    public int RequireItems = 0;
+    public int Items = 0;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerMovement>() == null)
+            return;
+
+        if (RequireItems > Items)
             return;
 
         StartCoroutine(LoadNextLevel());
