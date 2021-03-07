@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Grounded", isGrounded);
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (drawingManager.gameMode == GameMode.MOVING && horizontalInput != 0)
+        if (drawingManager.gameMode == GameMode.MOVING)
             Walk(horizontalInput);
 
         if (Input.GetAxis("Jump") > 0 && drawingManager.gameMode == GameMode.MOVING && isGrounded && !lockJump)
