@@ -68,11 +68,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("MoveKeyPressed", horizontalInput != 0);
         anim.SetBool("Climbing", IsOnLadder);
 
-        if (horizontalInput != 0 && isGrounded && !runSound.isPlaying)
+        if (drawingManager.gameMode == GameMode.MOVING && horizontalInput != 0 && isGrounded && !runSound.isPlaying)
         {
             runSound.Play();
         }
-        else if ((horizontalInput == 0 || !isGrounded) &&  runSound.isPlaying)
+        else if (drawingManager.gameMode == GameMode.MOVING && (horizontalInput == 0 || !isGrounded) &&  runSound.isPlaying)
         {
             runSound.Stop();
         }
