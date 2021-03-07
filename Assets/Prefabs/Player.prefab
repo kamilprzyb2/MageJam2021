@@ -125,10 +125,10 @@ MonoBehaviour:
   drawingManager: {fileID: 0}
   anim: {fileID: 2058153388}
   movementForce: 1
-  jumpForce: 130
+  jumpForce: 90
   climbForce: 20
-  strafingModifier: 0.9
-  ladderHorizontalModifier: 0.5
+  strafingModifier: 1.1
+  ladderHorizontalModifier: 0.8
   jumpCoolDown: 0.2
   box: {fileID: 1419270763698407052}
   groundCheckMiddle: {fileID: 440969201196450658}
